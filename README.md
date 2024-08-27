@@ -1,6 +1,9 @@
 # nmap_to_excel
 使用方法：
 ```
+pip install openpyxl
+```
+```
 python3 Nmap_to_excel.py
 ```
 
