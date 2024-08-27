@@ -35,9 +35,9 @@ def convert_to_excel():
     if input_path:
         if os.path.isfile(input_path):  # 如果输入的是单个文件
             try:
-                progress_bar['maximum'] = 1  # 将进度条最大值设为1
-                progress_bar['value'] = 0  # 初始化进度条值
-                root.update_idletasks()  # 更新GUI
+                progress_bar['maximum'] = 1
+                progress_bar['value'] = 0
+                root.update_idletasks()
                 
                 host_data = parse_nmap_xml(input_path)
                 excel_file = os.path.splitext(input_path)[0] + '.xlsx'
@@ -47,8 +47,8 @@ def convert_to_excel():
                 log_text.insert(tk.END, f"{input_path} 中的数据已写入 {excel_file}\n")
                 log_text.config(state=tk.DISABLED) 
                 
-                progress_bar['value'] = 1  # 更新进度条为100%
-                root.update_idletasks()  # 更新GUI
+                progress_bar['value'] = 1
+                root.update_idletasks()
             except Exception as e:
                 log_text.config(state=tk.NORMAL)
                 log_text.insert(tk.END, f"处理 {input_path} 时出错: {e}\n")
@@ -68,13 +68,13 @@ def convert_to_excel():
                     log_text.insert(tk.END, f"{xml_file} 中的数据已写入 {excel_file}\n")
                     log_text.config(state=tk.DISABLED)
                     progress_bar['value'] += 1
-                    root.update_idletasks()  # 更新GUI
+                    root.update_idletasks()
                 except Exception as e:
                     log_text.config(state=tk.NORMAL)
                     log_text.insert(tk.END, f"处理 {xml_file} 时出错: {e}\n")
                     log_text.config(state=tk.DISABLED)
                     progress_bar['value'] += 1
-                    root.update_idletasks()  # 更新GUI
+                    root.update_idletasks()
 
 def parse_nmap_xml(xml_file):
     tree = ET.parse(xml_file)
@@ -123,16 +123,14 @@ def write_to_excel(host_data, excel_file):
     ws = wb.active
     ws.title = "Nmap探测结果"
 
-    # 写入表头
     headers = ['主机IP', '存活状态', '端口', '协议', '端口状态', '服务', '操作系统类型', '操作系统识别准确率']
     for col_num, header in enumerate(headers, 1):
         c = ws.cell(row=1, column=col_num)
         c.value = header
 
-    # 设置标题行的样式
-    header_font = Font(color="FFFFFF", bold=True)  # 白色加粗字体
-    header_fill = PatternFill(start_color="80807F", end_color="80807F", fill_type="solid")  # 背景颜色
-    header_alignment = Alignment(horizontal="left")  # 水平居中
+    header_font = Font(color="FFFFFF", bold=True)
+    header_fill = PatternFill(start_color="80807F", end_color="80807F", fill_type="solid")
+    header_alignment = Alignment(horizontal="left")
 
     for col_num in range(1, len(headers) + 1):
         cell = ws.cell(row=1, column=col_num)
@@ -158,8 +156,8 @@ def write_to_excel(host_data, excel_file):
 
     merge_identical_cells(ws)
 
-    # 设置列宽
-    for col in range(1, 9):  # 列号从1到8
+    
+    for col in range(1, 9):
         if col <= 6:
             ws.column_dimensions[get_column_letter(col)].width = 15
         else:
@@ -195,11 +193,9 @@ if __name__ == "__main__":
     root = tk.Tk()
     root.title("Nmap探测结果转换为Excel表格")
 
-    # 获取屏幕尺寸
     screen_width = root.winfo_screenwidth()
     screen_height = root.winfo_screenheight()
 
-    # 将窗口居中
     center_window(root, screen_width, screen_height)
 
     icon_path = 'icon1.ico'
