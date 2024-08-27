@@ -16,5 +16,5 @@ python3 Nmap_to_excel.py
 选择nmap扫描结果生成的xml文件即可，如需要转换多个，把xml文件放在同一文件夹下，选中文件夹即可。
 
 ![image-20240827150158703](https://github.com/user-attachments/assets/d3c0d6ca-d752-4b08-8f97-1fb9f92fe20f)
-![image-20240827150256394](https://github.com/user-attachments/assets/0aaa8928-1874-439d-a2da-f371cf67307c)
+![image](https://github.com/user-attachments/assets/d346c25c-cc8f-4d4c-a14d-706e403b80b5)
 
